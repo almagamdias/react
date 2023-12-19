@@ -26,7 +26,7 @@ class WhoAmI extends Component {
     super(props);
     this.state = {
       years: 27,
-      text: '+++'
+      position: ''
     }
   }
   nextYear = () => {
@@ -41,16 +41,27 @@ class WhoAmI extends Component {
       years: state.years - 1
     }));
   }
+  inputChanges = (e, color) => {
+    console.log(color);
+    this.setState({
+      position: e.target.value
+    });
+  } 
   render() {
     const {name, surname, link} = this.props;
+    const {position, years} = this.state;
     return (
       <div>
-        <h1>My name is {name}, surname - {surname}, years - {this.state.years}</h1>
+        <h1>My name is {name}, surname - {surname}, years - {years}, position - {position}</h1>
         <div>
           <button onClick={this.prevYear} >---</button>
           <a href={link}>GO HERE!!</a>
-          <button onClick={this.nextYear} >{this.state.text}</button>
+          <button onClick={this.nextYear} >+++</button>
         </div>
+        <form>
+          <span>Введите должность</span>
+          <input type="text" onChange={(e) => this.inputChanges(e, 'Some color')}/>
+        </form>
       </div>
     )
   }
