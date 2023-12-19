@@ -22,6 +22,40 @@ class Field extends Component {
     return <input placeholder='HEREEEE!' type='text' style={styleField}/> 
   }
 }
+class WhoAmI extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      years: 27,
+      text: '+++'
+    }
+  }
+  nextYear = () => {
+    console.log('ADDED!');
+    this.setState(state => ({
+      years: state.years + 1
+    }));
+  }
+  prevYear = () => {
+    console.log('SubstractED!');
+    this.setState(state => ({
+      years: state.years - 1
+    }));
+  }
+  render() {
+    const {name, surname, link} = this.props;
+    return (
+      <div>
+        <h1>My name is {name}, surname - {surname}, years - {this.state.years}</h1>
+        <div>
+          <button onClick={this.prevYear} >---</button>
+          <a href={link}>GO HERE!!</a>
+          <button onClick={this.nextYear} >{this.state.text}</button>
+        </div>
+      </div>
+    )
+  }
+}
 const Button = () => {
   const text = () => {return 'LOGIN';}
   const logged = false;
@@ -33,7 +67,8 @@ function App() {
       <Header/>
       <Field/>
       <Button/>
-
+      <WhoAmI name='Dias' surname="Almagambetov" link="t.me/felixuscat"/>
+      <WhoAmI name='John' surname="Smith" link="vk.com"/>
     </div>
   );
 }
